@@ -2,7 +2,10 @@
   <div>
     <h3>Todos</h3>
     <div class="todos">
-      <div v-for="(todo) in allTodos.slice().reverse()" :key="todo.id" class="todo">{{todo.title}}</div>
+      <div v-for="(todo) in allTodos.slice().reverse()" :key="todo.id" class="todo">
+        {{todo.title}}
+        <i class="fas fa-trash-alt" @click.prevent="deleteTodo(todo.id)"></i> ghjk
+      </div>
     </div>
   </div>
 </template>
@@ -13,7 +16,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Todos",
   methods: {
-    ...mapActions(["fetchTodos"])
+    ...mapActions(["fetchTodos", "deleteTodo"])
   },
   computed: {
     ...mapGetters(["allTodos"])
