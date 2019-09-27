@@ -2,7 +2,7 @@
   <div>
     <h3>Todos</h3>
     <div class="todos">
-      <div v-for="(todo) in allTodos" :key="todo.id" class="todo">{{todo.title}}</div>
+      <div v-for="(todo) in allTodos.slice().reverse()" :key="todo.id" class="todo">{{todo.title}}</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,9 @@ export default {
   methods: {
     ...mapActions(["fetchTodos"])
   },
-  computed: mapGetters(["allTodos"]),
+  computed: {
+    ...mapGetters(["allTodos"])
+  },
   created() {
     this.fetchTodos();
   }
