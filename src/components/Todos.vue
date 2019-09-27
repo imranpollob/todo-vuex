@@ -1,8 +1,23 @@
 <template>
   <div>
     <h3>Todos</h3>
+    <div class="legend">
+      <span>Double click to mark as complete</span>
+      <span>
+        <span class="incomplete-box"></span> = Incomplete
+      </span>
+      <span>
+        <span class="complete-box"></span> = Complete
+      </span>
+    </div>
     <div class="todos">
-      <div v-for="(todo) in allTodos.slice().reverse()" :key="todo.id" class="todo">
+      <div
+        v-for="(todo) in todos"
+        :key="todo.id"
+        class="todo"
+        :class="{'is-complete':todo.completed}"
+        @dblclick="mark(todo)"
+      >
         {{todo.title}}
         <i class="fas fa-trash-alt" @click.prevent="deleteTodo(todo.id)"></i> ghjk
       </div>
@@ -16,10 +31,20 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Todos",
   methods: {
-    ...mapActions(["fetchTodos", "deleteTodo"])
+    ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
+    mark(todo) {
+      this.updateTodo({
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed
+      })
+    }
   },
   computed: {
-    ...mapGetters(["allTodos"])
+    ...mapGetters(["allTodos"]),
+    todos() {
+      return this.allTodos.slice().reverse();
+    }
   },
   created() {
     this.fetchTodos();
