@@ -19,7 +19,7 @@
         @dblclick="mark(todo)"
       >
         {{todo.title}}
-        <i class="fas fa-trash-alt" @click.prevent="deleteTodo(todo.id)"></i> ghjk
+        <i class="fas fa-trash-alt" @click.prevent="deleteTodo(todo.id)"></i>
       </div>
     </div>
   </div>

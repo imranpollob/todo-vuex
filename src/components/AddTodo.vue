@@ -4,7 +4,7 @@
     <div class="add">
       <form>
         <input type="text" v-model="title" />
-        <input type="submit" @click.prevent="onSubmit" />
+        <input type="submit" @click.prevent="onSubmit" value="Submit" />
       </form>
     </div>
   </div>
